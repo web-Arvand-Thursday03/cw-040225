@@ -37,29 +37,33 @@ if (isset($_GET['id'])) {
       <!-- Posts Content -->
       <div class="col-lg-8">
         <div class="row g-3">
-          <?php foreach ($posts as $post): ?>
-            <div class="col-sm-6">
-              <div class="card postCard">
-                <img src="./assets/images/<?= $post['image'] ?>" class="card-img-top" alt="post-image" />
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <h5 class="card-title fw-bold"><?= $post['title'] ?></h5>
-                    <div>
-                      <span class="badge text-bg-secondary"><?= $post['category_title'] ?></span>
+          <?php if (empty($posts)): ?>
+            <div class="alert alert-danger">پستی وجود ندارد !!!</div>
+          <?php else: ?>
+            <?php foreach ($posts as $post): ?>
+              <div class="col-sm-6">
+                <div class="card postCard">
+                  <img src="./assets/images/<?= $post['image'] ?>" class="card-img-top" alt="post-image" />
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="card-title fw-bold"><?= $post['title'] ?></h5>
+                      <div>
+                        <span class="badge text-bg-secondary"><?= $post['category_title'] ?></span>
+                      </div>
                     </div>
-                  </div>
-                  <p class="card-text text-secondary pt-3">
-                    <?= substr($post['body'], 0, 300) . "..." ?>
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
+                    <p class="card-text text-secondary pt-3">
+                      <?= substr($post['body'], 0, 300) . "..." ?>
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
 
-                    <p class="fs-7 mb-0">نویسنده : <?= $post['author'] ?></p>
+                      <p class="fs-7 mb-0">نویسنده : <?= $post['author'] ?></p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          <?php endforeach ?>
+            <?php endforeach ?>
+          <?php endif ?>
         </div>
       </div>
 
